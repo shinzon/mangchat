@@ -25,6 +25,7 @@
 #include "Policies/SingletonImp.h"
 #include "Player.h"
 #include "ObjectDefines.h"
+#include "mangchat/IRCClient.h"
 
 INSTANTIATE_SINGLETON_1(GMTicketMgr);
 
@@ -77,4 +78,13 @@ void GMTicketMgr::DeleteAll()
     }
     CharacterDatabase.PExecute("DELETE FROM character_ticket");
     m_GMTicketMap.clear();
+
+	std::string msg; // Start addition of IRC handling for GM Ticket
+	msg = "";
+	std::string str = "|cffff0000[All Tickets Deleted]:|r";
+	str += msg;
+    std::string ircchan = "#";
+    ircchan += sIRC._irc_chan[sIRC.Status].c_str();                
+	sIRC.Send_IRC_Channel(ircchan, sIRC.MakeMsg("\00304,08\037/!\\\037\017\00304 All Tickets Deleted\00304,08\037/!\\\037\017 %s", "%s", msg.c_str()), true); // End of IRC handling
+
 }

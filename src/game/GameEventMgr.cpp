@@ -25,6 +25,7 @@
 #include "Log.h"
 #include "MapManager.h"
 #include "Policies/SingletonImp.h"
+#include "mangchat/IRCClient.h"
 
 INSTANTIATE_SINGLETON_1(GameEventMgr);
 
@@ -483,6 +484,12 @@ void GameEventMgr::ApplyNewEvent(uint16 event_id)
             break;
         case 1:                                             // announce events
             sWorld.SendWorldText(LANG_EVENTMESSAGE, mGameEvent[event_id].description.c_str());
+            if((sIRC.BOTMASK & 256) != 0)
+            {
+                std::string ircchan = "#";
+                ircchan += sIRC._irc_chan[sIRC.anchn].c_str();                
+                sIRC.Send_IRC_Channel(ircchan, sIRC.MakeMsg("\00304,08\037/!\\\037\017\00304 Game Event \00304,08\037/!\\\037\017 %s", "%s", mGameEvent[event_id].description.c_str()), true);
+            }			
             break;
     }
 

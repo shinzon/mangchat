@@ -151,7 +151,21 @@ libmangosgame_a_SOURCES = \
 	InstanceData.h \
 	InstanceSaveMgr.cpp \
 	InstanceSaveMgr.h \
-	Item.cpp \
+        mangchat/IRCClient.cpp \
+        mangchat/IRCClient.h \
+        mangchat/IRCCmd.cpp \
+        mangchat/IRCCmd.h \
+        mangchat/IRCCmde.cpp \
+        mangchat/IRCConf.cpp \
+        mangchat/IRCConf.h \
+        mangchat/IRCFunc.h \
+        mangchat/IRCIO.cpp \
+        mangchat/IRCLog.cpp \
+        mangchat/IRCLog.h \
+        mangchat/IRCSock.cpp \
+        mangchat/MCS_OnlinePlayers.cpp \
+        mangchat/MCS_OnlinePlayers.h \		
+  	Item.cpp \
 	Item.h \
 	ItemEnchantmentMgr.cpp \
 	ItemEnchantmentMgr.h \

@@ -483,6 +483,7 @@ class ChatHandler
         bool HandleFlushArenaPointsCommand(const char *args);
         bool HandleRepairitemsCommand(const char* args);
         bool HandleWaterwalkCommand(const char* args);
+		bool HandleIRCpmCommand(const char* args);
 
         //! Development Commands
         bool HandleSet32Bit(const char* args);

@@ -1590,6 +1590,62 @@
 				>
 			</File>
 		</Filter>
+		<Filter
+			Name="IRC"
+			>
+			<File
+				RelativePath="..\..\src\game\mangchat\IRCClient.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\game\mangchat\IRCClient.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\game\mangchat\IRCCmd.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\game\mangchat\IRCCmd.h"
+				>
+			</File>
+			<File
+			RelativePath="..\..\src\game\mangchat\IRCCmde.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\game\mangchat\IRCConf.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\game\mangchat\IRCFunc.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\game\mangchat\IRCIO.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\game\mangchat\IRCLog.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\game\mangchat\IRCLog.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\game\mangchat\IRCSock.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\game\mangchat\MCS_OnlinePlayers.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\src\game\mangchat\MCS_OnlinePlayers.h"
+				>
+			</File>
+		</Filter>		
 		<File
 			RelativePath="..\..\src\game\pchdef.cpp"
 			>

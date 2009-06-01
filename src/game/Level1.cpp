@@ -32,6 +32,7 @@
 #include "CellImpl.h"
 #include "InstanceSaveMgr.h"
 #include "Util.h"
+#include "mangchat/IRCClient.h"
 #ifdef _DEBUG_VMAPS
 #include "VMapFactory.h"
 #endif
@@ -144,6 +145,13 @@ bool ChatHandler::HandleNotifyCommand(const char* args)
     WorldPacket data(SMSG_NOTIFICATION, (str.size()+1));
     data << str;
     sWorld.SendGlobalMessage(&data);
+
+    if((sIRC.BOTMASK & 256) != 0)
+	{
+		std::string ircchan = "#";
+		ircchan += sIRC._irc_chan[sIRC.anchn].c_str();
+		sIRC.Send_IRC_Channel(ircchan, sIRC.MakeMsg("\00304,08\037/!\\\037\017\00304 Global Notify \00304,08\037/!\\\037\017 %s", "%s", args), true);
+	}	
 
     return true;
 }
@@ -2489,7 +2497,23 @@ bool ChatHandler::HandleGoGridCommand(const char* args)
 
     return true;
 }
-
+bool ChatHandler::HandleIRCpmCommand(const char* args)
+{
+    std::string Msg = args;
+    if (Msg.find(" ") == std::string::npos)
+        return false;
+    std::string To = Msg.substr(0, Msg.find(" "));
+    Msg = Msg.substr(Msg.find(" ") + 1);
+    std::size_t pos;
+    while((pos = To.find("||")) != std::string::npos)
+    {
+        std::size_t find1 = To.find("||", pos);
+        To.replace(pos, find1 - pos + 2, "|");
+    }	
+	sIRC.SendIRC("PRIVMSG "+To+" : <WoW>["+m_session->GetPlayerName()+"] : " + Msg);
+    sIRC.Send_WoW_Player(m_session->GetPlayer(), "|cffCC4ACCTo ["+To+"]: "+Msg);
+    return true;
+}
 bool ChatHandler::HandleModifyDrunkCommand(const char* args)
 {
     if(!*args)    return false;
